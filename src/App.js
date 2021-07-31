@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from "react-redux";
+import { addDate } from "./actions";
+import { useRef } from "react";
+import "./styles.css";
 
-function App() {
+export default function App() {
+  const dateData = useSelector((state) => state.dates);
+  const dispatch = useDispatch();
+  const dateName = useRef(null);
+
+  const handleAddDate = () => {
+    console.log("Adding date...", dateName.current.value);
+    dispatch(addDate({ dateName: dateName.current.value }));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-outer">
+      {dateData.map((date, index) => (
+        <p key={index}>{date.dateName}</p>
+      ))}
+      <input type="text" ref={dateName} />
+      <button onClick={handleAddDate}>ADD DATE</button>
     </div>
   );
 }
-
-export default App;

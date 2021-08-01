@@ -83,6 +83,10 @@ p {
   color: black;
 }
 
+#root {
+  width: 75%;
+}
+
 .container-outer {
   width: 75%;
   padding: 10px;

@@ -1,6 +1,6 @@
 import { ADD_DATE, FETCH_DATA, ERROR } from "../types";
 
-const initialState = { dates: [], error: "Still no errors" };
+const initialState = { dates: [] };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {

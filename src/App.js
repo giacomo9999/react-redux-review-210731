@@ -11,7 +11,6 @@ export default function App() {
   const [submitButtonState, setSubmitButtonState] = useState(false);
 
   const dateData = useSelector((state) => state.dates);
-  const errorDataMsg = useSelector((state) => state.error);
   const dispatch = useDispatch();
   const dateName = useRef(null);
 
@@ -19,28 +18,27 @@ export default function App() {
     setTimeout(() => {
       dispatch(fetchData());
     }, 2000);
-    setAndLogErrData();
   }, []);
 
-  const setAndLogErrData = () => {
-    setErrData(errorDataMsg);
-    console.log(errData);
-  };
-
   const handleAddDate = () => {
-    console.log(validateAndFormatDate(dateName.current.value));
-    setSubmitButtonState(true);
-    setTimeout(() => {
-      console.log(
-        "Adding date...",
-        validateAndFormatDate(dateName.current.value)
-      );
-      dispatch(
-        addDate({ dateName: validateAndFormatDate(dateName.current.value) })
-      );
+    const newDate = validateAndFormatDate(dateName.current.value);
+    if (newDate === "invalid") {
+      setErrData("Invalid date.");
+    } else if (newDate.split("-")[0] < 2019) {
+      setErrData("Your date " + newDate + " was too old. Please try again.");
       dateName.current.value = "";
-      setSubmitButtonState(false);
-    }, 2000);
+    } else {
+      setSubmitButtonState(true);
+      setTimeout(() => {
+        console.log("Adding date...", newDate);
+        dispatch(addDate({ dateName: newDate }));
+        dateName.current.value = "";
+        setSubmitButtonState(false);
+        setErrData(
+          "Your date " + newDate + " was successfully tested and stored."
+        );
+      }, 2000);
+    }
   };
 
   const submitButton = (submitting) => {
@@ -57,7 +55,9 @@ export default function App() {
         <p key={index}>{date.dateName}</p>
       ))}
       <input type="text" ref={dateName} />
+      <div className="spacer10" />
       {submitButton(submitButtonState)}
+      <h4>{errData}</h4>
     </div>
   );
 }

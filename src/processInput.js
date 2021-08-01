@@ -21,7 +21,13 @@ const validateAndFormatDate = (strIn) => {
 
   const isValidJulian = (strIn) => {
     const splitStr = strIn.split(" ").map((entry) => entry.trim());
-    return splitStr.length === 3 && parseInt(splitStr[1]) === splitStr[1];
+    console.log(
+      "checking Julian validity...",
+      splitStr,
+      splitStr.length,
+      parseInt(splitStr[2]) === splitStr[2]
+    );
+    return splitStr.length === 3;
   };
 
   const padDigits = (strIn) => {

@@ -4,9 +4,9 @@ import { ADD_DATE, FETCH_DATA, ERROR } from "./types";
 let server = createServer();
 server.get("api/dates", {
   dates: [
-    { dateName: "01 Jan 1999" },
-    { dateName: "02 Feb 2000" },
-    { dateName: "03 Mar 2001" },
+    { dateName: "2019-01-15" },
+    { dateName: "2020-07-01" },
+    { dateName: "2021-12-19" },
   ],
 });
 

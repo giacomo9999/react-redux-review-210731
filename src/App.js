@@ -31,11 +31,13 @@ export default function App() {
       setSubmitButtonState(true);
       setTimeout(() => {
         console.log("Adding date...", newDate);
-        dispatch(addDate({ dateName: newDate }));
+        dispatch(
+          addDate({ dateName: newDate, originalEntry: dateName.current.value })
+        );
         dateName.current.value = "";
         setSubmitButtonState(false);
         setErrData(
-          "Your date " + newDate + " was successfully tested and stored."
+          "Your date- " + newDate + " -was successfully tested and stored."
         );
       }, 2000);
     }
@@ -49,11 +51,32 @@ export default function App() {
     );
   };
 
+  const yearColumn = (year) => {
+    console.log(dateData);
+    const filteredDateData = dateData.filter((date) => {
+      return parseInt(date.dateName.split("-")[0]) === year;
+    });
+    console.log(filteredDateData);
+    return (
+      <div className="year-column">
+        <h2>{year}</h2>
+        {filteredDateData.map((date, index) => (
+          <div className="container-inner" key={index}>
+            <h3>{date.dateName}</h3>
+            <p>{date.originalEntry}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="container-outer">
-      {dateData.map((date, index) => (
-        <p key={index}>{date.dateName}</p>
-      ))}
+      <div className="years-box">
+        {yearColumn(2019)}
+        {yearColumn(2020)}
+        {yearColumn(2021)}
+      </div>
       <input type="text" ref={dateName} />
       <div className="spacer10" />
       {submitButton(submitButtonState)}

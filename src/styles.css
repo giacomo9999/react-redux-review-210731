@@ -84,7 +84,7 @@ p {
 }
 
 #root {
-  width: 75%;
+  width: 95%;
 }
 
 .container-outer {
@@ -97,12 +97,28 @@ p {
 }
 
 .container-inner {
-  width: 85%;
-  margin: 10px auto 5px;
+  width: 95%;
+  margin: 5px auto 5px;
   /* background color 2 */
   background-color: #3c4a59;
   padding: 10px;
   border-radius: 5px;
+}
+
+.years-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.year-column {
+  width: 30%;
+  margin: 10px auto 5px;
+  padding: 10px;
+  background-color: #bccad9;
+}
+
+.year-column h2 {
+  color: black;
 }
 
 /* Lists: */

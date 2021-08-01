@@ -78,6 +78,10 @@ p {
   margin: 5px;
 }
 
+p {
+  font-size: .9rem;
+}
+
 .dark {
   /* color 0 */
   color: black;
@@ -88,9 +92,9 @@ p {
 }
 
 .container-outer {
-  width: 75%;
+  width: 95%;
   padding: 10px;
-  margin: 20px auto 10px;
+  margin: 10px auto 10px;
   /* background color 5 */
   background-color: #6c7a89;
   border-radius: 5px;
@@ -101,7 +105,7 @@ p {
   margin: 5px auto 5px;
   /* background color 2 */
   background-color: #3c4a59;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
 }
 
@@ -113,7 +117,7 @@ p {
 .year-column {
   width: 30%;
   margin: 10px auto 5px;
-  padding: 10px;
+  padding: 5px;
   background-color: #bccad9;
 }
 

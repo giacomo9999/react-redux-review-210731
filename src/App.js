@@ -7,7 +7,7 @@ import validateAndFormatDate from "./processInput";
 import "./styles.css";
 
 export default function App() {
-  const [errData, setErrData] = useState("No errors yet");
+  const [errData, setErrData] = useState("");
   const [submitButtonState, setSubmitButtonState] = useState(false);
 
   const dateData = useSelector((state) => state.dates);
@@ -53,9 +53,16 @@ export default function App() {
 
   const yearColumn = (year) => {
     console.log(dateData);
-    const filteredDateData = dateData.filter((date) => {
-      return parseInt(date.dateName.split("-")[0]) === year;
-    });
+    const filteredDateData = dateData
+      .filter((date) => {
+        return parseInt(date.dateName.split("-")[0]) === year;
+      })
+      .sort((a, b) => {
+        return (
+          parseInt(a.dateName.split("-")[1] + a.dateName.split("-")[2]) -
+          parseInt(b.dateName.split("-")[1] + b.dateName.split("-")[2])
+        );
+      });
     console.log(filteredDateData);
     return (
       <div className="year-column">
